@@ -67,7 +67,8 @@ export default function App() {
       setAnalysis(result);
     } catch (err: any) {
       console.error(err);
-      setError("Vision Analysis Failed. Pastikan gambar jelas dan data mentah valid.");
+      // SHOW REAL ERROR MESSAGE
+      setError(err.message || "Audit Failed. Please check inputs and try again.");
     } finally {
       setLoading(false);
     }
@@ -150,7 +151,9 @@ export default function App() {
                         <div className="max-w-xl mx-auto mt-10 p-8 bg-rose-500/5 border border-rose-500/20 rounded-3xl text-center">
                             <AlertTriangle className="mx-auto text-rose-500 mb-4" size={32} />
                             <h3 className="text-rose-400 font-bold mb-2">Audit Interrupted</h3>
-                            <p className="text-rose-200/50 text-sm mb-6 leading-relaxed">{error}</p>
+                            <p className="text-rose-200/70 text-sm mb-6 leading-relaxed font-mono bg-black/30 p-4 rounded-lg border border-rose-900/30">
+                                {error}
+                            </p>
                             <button onClick={() => setError(null)} className="px-8 py-3 bg-rose-600 text-white rounded-xl font-bold text-sm">Retry Protocol</button>
                         </div>
                     )}
